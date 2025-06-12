@@ -24,8 +24,8 @@ class ProductCategory(models.Model):
         return self.name
     
 
-def get_default_product_category():
-    return ProductCategory.objects.get_or_create(name="Others")[0]
+    def get_default_product_category():
+        return ProductCategory.objects.get_or_create(name="Others")[0]
 
     
 class Product(models.Model):
@@ -33,7 +33,7 @@ class Product(models.Model):
     category = models.ForeignKey(
         ProductCategory,
         related_name="product_list",
-        on_delete=models.SET(get_default_product_category),
+        on_delete=models.SET(get_default_product_category), # type: ignore
     )
 
     name = models.CharField(max_length=200)
