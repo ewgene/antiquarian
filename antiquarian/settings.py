@@ -47,7 +47,10 @@ INSTALLED_APPS = [
     'django_filters',
     'dj_rest_auth',
     'phonenumber_field',
-    'phonenumbers'
+    'phonenumbers',
+    'crypto',
+    'crispy_forms',
+    'crispy_bootstrap4',
 ]
 
 MIDDLEWARE = [

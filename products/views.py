@@ -2,13 +2,23 @@ from django.shortcuts import render # type: ignore
 from django.views.generic import ListView, DetailView # type: ignore
 from products.models import Product # type: ignore
 from rest_framework import viewsets # type: ignore
-from .models import Product
+from .models import Product, ProductCategory, ProductImage # type: ignore
 from .filters import ProductFilter
-#from .serializer import ProductSerializer # type: ignore
+from .serializer import ProductSerializer, ProductCategorySerializer, ProductImageSerializer # type: ignore
 
 class ProductViewSet(viewsets.ModelViewSet):
     queryset = Product.objects.all()
-#    serializer_class = ProductSerializer
+    serializer_class = ProductSerializer
+    def list_products(self, request):
+         return render(request, 'products/home.html')
+
+class ProductCategoryViewSet(viewsets.ModelViewSet):
+    queryset = ProductCategory.objects.all()
+    serializer_class = ProductCategorySerializer
+
+class ProductImageSerializer(viewsets.ModelViewSet):
+    queryset = ProductImage.objects.all()
+    serializer_class = ProductImageSerializer
 
 class Home(ListView):
     model = Product
@@ -27,3 +37,4 @@ def home(request):
 
 class ProductDetail(DetailView):
 	model = Product
+	template_name = 'products/product_detail.html'

@@ -1,6 +1,7 @@
 from django.db import models # type: ignore
 from django.conf import settings # type: ignore
 from django.utils import timezone # type: ignore
+from django.utils.crypto import get_random_string # type: ignore
 from rest_framework.exceptions import NotAcceptable # type: ignore
 from django.utils.translation import gettext_lazy as _ # type: ignore
 from django.contrib.auth import get_user_model  # type: ignore
