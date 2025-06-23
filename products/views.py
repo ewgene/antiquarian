@@ -2,6 +2,8 @@ from django.shortcuts import render # type: ignore
 from django.views.generic import ListView, DetailView # type: ignore
 from products.models import Product # type: ignore
 from rest_framework import viewsets # type: ignore
+from rest_framework.decorators import action # type: ignore
+from rest_framework.response import Response # type: ignore
 from .models import Product, ProductCategory, ProductImage # type: ignore
 from .filters import ProductFilter
 from .serializer import ProductSerializer, ProductCategorySerializer, ProductImageSerializer # type: ignore
@@ -9,8 +11,12 @@ from .serializer import ProductSerializer, ProductCategorySerializer, ProductIma
 class ProductViewSet(viewsets.ModelViewSet):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
+    
+    @action(detail=False, methods=['get'])
     def list_products(self, request):
-         return render(request, 'products/home.html')
+        product_list = Product.objects.all()
+        product_filter = ProductFilter(request.GET, queryset=product_list)
+        return render(request, 'products/home.html', {'filter': product_filter})
 
 class ProductCategoryViewSet(viewsets.ModelViewSet):
     queryset = ProductCategory.objects.all()

@@ -16,6 +16,8 @@ urlpatterns = [
     path("home/", home, name="home_alt"),
     path("home-class/", Home.as_view(), name="home_class"),
     path("product/<slug:slug>/", ProductDetail.as_view(), name="product_detail"),
+    # Custom route for list_products action
+    path("list-products/", ProductViewSet.as_view({'get': 'list_products'}), name="list_products"),
     # API routes
     path("api/", include(router.urls)),
 ]

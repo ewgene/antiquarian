@@ -16,6 +16,11 @@ import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),  # A common project-level static directory
+    os.path.join(BASE_DIR, "media/products"),
+    os.path.join(BASE_DIR, "media/product_gallery") # An absolute path to another static directory
+]
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
