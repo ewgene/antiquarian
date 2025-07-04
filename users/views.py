@@ -5,7 +5,7 @@ from django.utils.translation import gettext as _ # type: ignore
 from rest_framework import permissions, status # type: ignore
 from rest_framework.generics import ( # type: ignore
     GenericAPIView,
-    RetrieveAPIView,
+    RetrieveAPIView, UpdateAPIView, CreateAPIView,
     RetrieveUpdateAPIView,
 )
 from rest_framework.response import Response # type: ignore
